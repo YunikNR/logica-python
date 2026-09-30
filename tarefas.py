@@ -1,27 +1,55 @@
 tarefas = [
-    {"titulo":"Estudar", "Concluida":1, "Prioridade":1},
-    {"titulo":"Ler", "Concluida":0, "Prioridade":0}
+    {"titulo":"Estudar", "concluida":"[X]", "prioridade":"Alta"},
+    {"titulo":"Ler", "concluida":"[ ]", "prioridade":"Baixa"}
 ]
-def mostrar_tarefa():
-    for tarefa in tarefas:
-        if tarefa["Concluida"] == 1:
-            status = "[X]" 
-        else: 
-            status = "[ ]"
-        if tarefa["Prioridade"] == 1:
-            prioridade = "Alta"
-        else: 
-            prioridade = "baixa"
-        print()
-        print(f"{status} {tarefa["titulo"]} |{prioridade}")
 
 def mostrar_tudo():
-    mostrar_tarefa()
-           
+    for tarefa in tarefas:
+        print()
+        print(f"{tarefa["concluida"]} {tarefa["titulo"]} |{tarefa["prioridade"]}")
+
 def mostrar_concluidas():
     for tarefa in tarefas:
-        if tarefa["Concluida"] == 1:
-            mostrar_tarefa()
+        if tarefa["concluida"] == "[X]":
+            print("|")
+            print(f"{tarefa["concluida"]} {tarefa["titulo"]} |{tarefa["prioridade"]}")
+
+def mostrar_pendentes():
+    for tarefa in tarefas:
+        if tarefa["concluida"] == "[ ]":
+            print("|")
+            print(f"{tarefa["concluida"]} {tarefa["titulo"]} |{tarefa["prioridade"]}")
+
+def mostrar_prioridade():
+    for tarefa in tarefas:
+        if tarefa["prioridade"] == "Alta":
+            print(" |")
+            print(f"{tarefa["concluida"]} {tarefa["titulo"]} |{tarefa["prioridade"]}")
+        if tarefa["prioridade"] == "Baixa":
+            print(" |")
+            print(f"{tarefa["concluida"]} {tarefa["titulo"]} |{tarefa["prioridade"]}")
+
+def cadastrar():
+    titulo = input("Qual é o titulo? ")
+    prioridade = input("Qual é a prioridade? ")
+    concluida = input("Já foi concluida? ")
+    nova_tarefa = [{titulo},{concluida},{prioridade}]
+    tarefas.append(nova_tarefa)
+    print("Tarefa cadastrada com sucesso.")
+
+def finalizar():
+    resposta = input("Qual item deseja modificar? ")
+    for tarefa in tarefas:
+        if tarefa["titulo"] == resposta:
+            tarefa["concluida"] = "[X]"
+            print("Tarefa concluida.")
+
+def excluir():
+    resposta = input("Qual item deseja excluir? ")
+    for tarefa in tarefas:
+        if tarefa["titulo"] == resposta:
+            tarefas.remove(tarefa)
+            print("Tarefa excluida.")
 
 while True:
     print("\n---\n Lista de Tarefas \n---\n")
@@ -52,7 +80,3 @@ while True:
     elif opcao == 8:
         print("Saindo do sistema...")
         exit()
-    elif opcao == 0:
-        mostrar()
-    else:
-        print("Opção inválida, tente novamente...")

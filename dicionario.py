@@ -29,8 +29,8 @@ def remover():
 while True:
     print("Alunos")
     print("1 - Mostrar lista")
-    print("2 - Cadastrar produto na lista")
-    print("3 - Cancelar CPF")
+    print("2 - Cadastrar")
+    print("3 - Remover")
     print("4 - Sair")
     opcao = int(input("Escolha uma opção: "))
 
